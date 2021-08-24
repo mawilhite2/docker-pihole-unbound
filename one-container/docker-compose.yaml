@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 volumes:
   etc_pihole-unbound:
@@ -7,7 +7,7 @@ volumes:
 services:
   pihole:
     container_name: pihole
-    image: cbcrowe/pihole-unbound:latest
+    image: ricklesbits/recursive-rick-hole:latest
     hostname: ${HOSTNAME}
     domainname: ${DOMAIN_NAME}
     ports:
@@ -27,7 +27,7 @@ services:
       REV_SERVER_CIDR: ${REV_SERVER_CIDR}
       DNS1: 127.0.0.1#5335 # Hardcoded to our Unbound server
       DNS2: 127.0.0.1#5335 # Hardcoded to our Unbound server
-      DNSSEC: "true" # Enable DNSSEC
+      DNSSEC: "false" # Enable DNSSEC
     volumes:
       - etc_pihole-unbound:/etc/pihole:rw
       - etc_pihole_dnsmasq-unbound:/etc/dnsmasq.d:rw
